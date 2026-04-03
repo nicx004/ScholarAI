@@ -1,16 +1,65 @@
-# React + Vite
+# ScholarAI – AI Research Assistant
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+ScholarAI is an AI-powered research assistant built to help users understand and interact with academic or technical content more efficiently. It allows users to upload documents, ask questions, and receive context-aware answers generated using modern language models.
 
-Currently, two official plugins are available:
+The project was initially developed during a hackathon and later extended to improve structure, usability, and overall performance.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+---
 
-## React Compiler
+## Overview
 
-The React Compiler is currently not compatible with SWC. See [this issue](https://github.com/vitejs/vite-plugin-react/issues/428) for tracking the progress.
+Working with long research papers or technical documents can be time-consuming. ScholarAI addresses this by combining document processing with retrieval-augmented generation (RAG), enabling users to extract relevant insights quickly without manually scanning entire documents.
 
-## Expanding the ESLint configuration
+---
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## Key Features
+
+- Upload and process PDF or text documents  
+- Ask questions based on uploaded content  
+- Generate concise summaries of complex material  
+- Retrieve contextually relevant information using embeddings  
+- Interactive chat interface for continuous queries  
+
+---
+
+## Tech Stack
+
+**Frontend**
+- React
+- Tailwind CSS
+
+**Backend**
+- FastAPI
+- Python
+
+**AI / ML Components**
+- Large Language Models (Mistral / OpenAI)
+- Retrieval-Augmented Generation (RAG)
+- FAISS for vector similarity search
+- Text chunking and embedding pipelines
+
+---
+
+## System Workflow
+
+1. A user uploads a document (PDF or text)
+2. The backend processes the document and splits it into smaller chunks
+3. Each chunk is converted into vector embeddings
+4. Embeddings are stored and indexed using FAISS
+5. When a query is made, relevant chunks are retrieved
+6. The language model generates a response using this context
+
+This approach ensures that responses are grounded in the actual document rather than being generic or hallucinated.
+
+---
+
+## Local Setup
+
+### Backend
+
+```bash
+cd backend
+python -m venv .venv
+.venv\Scripts\activate   # Windows
+pip install -r requirements.txt
+uvicorn app.main:app --reload
